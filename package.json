@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "dev": "nodemon lib/routes/CodeTest.js",
+    "dev": "nodemon lib/bootstrap.js",
     "test": "nodemon --exec mocha lib/**/**/*.test.js"
   },
   "author": "Horizon Four",
@@ -22,6 +22,7 @@
     "@types/vision": "^4.1.2",
     "bcrypt": "^1.0.3",
     "dotenv": "^4.0.0",
+    "hapi-auth-jwt2": "^7.3.0",
     "hapi": "^16.6.2",
     "hapi-handlers": "^2.0.0",
     "hapi-router": "^3.5.0",
@@ -30,6 +31,10 @@
     "jsonwebtoken": "^8.1.0",
     "mongoose": "^4.12.3",
     "tslint-config-airbnb": "^5.3.0",
-    "typescript": "^2.5.3"
+    "typescript": "^2.5.3",
+    "vision": "^4.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
   }
 }

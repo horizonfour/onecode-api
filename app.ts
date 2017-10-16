@@ -1,6 +1,7 @@
 const hapi = require('hapi');
 // import Inert from 'inert'; // Usado para exposição de arquivos estáticos.
 const vision = require('vision'); // Usado para administração de template engines
+const hapiJwt = require('hapi-auth-jwt2');
 
 import * as HapiSwagger from './src/middlewares/plugins/HapiSwaggerPlugin';
 
@@ -20,11 +21,15 @@ async function startApi() {
 
     await server.register(vision);
 
+    await server.register(hapiJwt);
+
     server.auth.strategy('jwt', 'jwt', {
       key: process.env.JWT_SECRET,
       validateFunc: validate,
       verifyOptions: { algorithms: ['HS256'] },
     });
+
+    server.auth.default('jwt');
 
     await server.start();
 
