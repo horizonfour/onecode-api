@@ -1,0 +1,3 @@
+/**
+ * Schema usuários no banco.
+ */
