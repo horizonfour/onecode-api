@@ -1,5 +1,5 @@
 import HelloWorldController from './../controllers/HelloWorldController';
-import IRoute from './interfaces/IRoute'
+import IRoute from './interfaces/IRoute';
 
 class HelloWorldRoute implements IRoute {
   private helloController: HelloWorldController;
@@ -20,4 +20,3 @@ class HelloWorldRoute implements IRoute {
   }
 }
 export default HelloWorldRoute;
-

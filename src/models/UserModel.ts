@@ -1,11 +1,13 @@
-import * as mongoose from 'mongoose';
+import mongoose from './../config/mongoose';
 /**
  * Schema usuários no banco.
  */
 
-const user = new mongoose.Schema({
-  id: mongoose.Types.ObjectId,
-  name: String,
+const userSchema = new mongoose.Schema({
+  name: {
+    required: true,
+    type: String,
+  },
 });
 
-export default user;
+export default mongoose.model('User', userSchema);
