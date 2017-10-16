@@ -15,13 +15,17 @@ async function startApi() {
   try {
     // Instancia o HapiJS
     const server = new hapi.Server();
+
     await server.connection({ port: global.process.env.APP_PORT });
+
     await server.register(vision);
+
     server.auth.strategy('jwt', 'jwt', {
       key: process.env.JWT_SECRET,
       validateFunc: validate,
       verifyOptions: { algorithms: ['HS256'] },
     });
+
     await server.start();
 
     console.info(`SERVER RUNNING: ${server.info.uri}`);
