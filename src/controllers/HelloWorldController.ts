@@ -9,4 +9,4 @@ class HelloWorldController {
   }
 }
 
-export default new HelloWorldController();
+export default HelloWorldController;

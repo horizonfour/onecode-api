@@ -17,12 +17,18 @@
     "@types/joi": "^10.4.3",
     "@types/jsonwebtoken": "^7.2.3",
     "@types/mocha": "^2.2.43",
+    "@types/mongoose": "^4.7.23",
     "@types/node": "^8.0.33",
     "@types/vision": "^4.1.2",
+    "bcrypt": "^1.0.3",
+    "dotenv": "^4.0.0",
     "hapi": "^16.6.2",
     "hapi-handlers": "^2.0.0",
     "hapi-router": "^3.5.0",
     "hapi-swagger": "^7.8.1",
+    "joi": "^13.0.0",
+    "jsonwebtoken": "^8.1.0",
+    "mongoose": "^4.12.3",
     "tslint-config-airbnb": "^5.3.0",
     "typescript": "^2.5.3"
   }
