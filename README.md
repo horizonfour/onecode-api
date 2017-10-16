@@ -4,7 +4,7 @@
   <img width="150" heigth="150" src="https://cdn-images-1.medium.com/fit/c/200/200/1*OePo_jaUkiInnxiTMHOO_g.png">
 </p>
 Este é o repositório da base de uma API Rest com Hapi.js, Moongoose, JWTAuth e TypeScript, para utilizarmos como base para projetos futuros. **Importante! Para construção desse template de API foi utilizado o Git-Crypt, para verificar seu uso, acesse [GitCrypt Tutorial](https://medium.com/trainingcenter/protegendo-dados-sens%C3%ADveis-com-git-crypt-9fca13e6835b).  
-E para acessar esse ambiente entre em contado e solicite a chave.** :smile:  
+E para acessar esse ambiente entre em contado e solicite a chave.** :smile:       
 **Dúvidas ?** erick.wendel@horizonfour.com.br
 
 ### Status (CICD)
