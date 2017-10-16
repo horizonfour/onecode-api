@@ -20,8 +20,10 @@ class HelloWorldRoute implements IRoute {
       },
     ];
   }
+
   public routes() {
     return [this.getHelloWord];
   }
 }
+
 export default HelloWorldRoute;
