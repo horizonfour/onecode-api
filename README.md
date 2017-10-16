@@ -3,10 +3,7 @@
 <p align="center">
   <img width="150" heigth="150" src="https://cdn-images-1.medium.com/fit/c/200/200/1*OePo_jaUkiInnxiTMHOO_g.png">
 </p>
-
-Este é o repositório sobre os padrões de código Javascript, utilizado pelos desenvolvedores H4.
-Abaixo você irá encontrar todas as informações necessárias para que você trabalhe neste projeto.
-
+Este é o repositório da base de uma API Rest com Hapi.js, Moongoose, JWTAuth e TypeScript, para utilizarmos como base para projetos futuros.
 **Dúvidas ?** erick.wendel@horizonfour.com.br
 
 ### Status (CICD)
