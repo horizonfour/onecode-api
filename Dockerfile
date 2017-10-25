@@ -1,7 +1,8 @@
-FROM node:8.5
+FROM node:8.7.0
 ADD . /app
 WORKDIR /app
-RUN npm install
-RUN npm install -g pm2
-CMD ["pm2-docker","index.js"]
+RUN npm i -g yarn
+RUN npm i -g pm2
+RUN yarn install
+RUN pm2 start /lib/bootstrap.js
 EXPOSE 8080

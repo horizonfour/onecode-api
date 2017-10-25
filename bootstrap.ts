@@ -7,4 +7,5 @@ if (process.env.ENVIRONMENT !== 'PROD') {
   dotenv.config({ path: './config/.env.prod' });
 }
 
-import './app.js';
+import * as app from './app.js';
+app.default();

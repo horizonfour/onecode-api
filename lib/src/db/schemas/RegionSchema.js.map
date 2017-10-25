@@ -1,0 +1,1 @@
+{"version":3,"file":"RegionSchema.js","sourceRoot":"","sources":["../../../../src/db/schemas/RegionSchema.ts"],"names":[],"mappings":";;AAAA,4CAAqC;AACrC;;GAEG;AAEH,MAAM,YAAY,GAAG,IAAI,kBAAQ,CAAC,MAAM,CAAC;IACvC,IAAI,EAAE;QACJ,QAAQ,EAAE,IAAI;QACd,IAAI,EAAE,MAAM;KACb;CACF,CAAC,CAAC;AACH,gBAAgB;AAEhB,kBAAe,kBAAQ,CAAC,KAAK,CAAC,QAAQ,EAAE,YAAY,CAAC,CAAC"}
