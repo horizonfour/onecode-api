@@ -12,7 +12,7 @@ import { TeamsRoute } from './src/routes/TeamsRoute';
 
 // tslint:disable-next-line:ter-arrow-parens
 // Registrando todas as rotas!
-const routesConfig = [UserRoute, TeamsRoute]
+const routesConfig = [UserRoute]
   .map(i => new i().routes())
   .reduce((prev, next) => prev.concat(next), []);
 
