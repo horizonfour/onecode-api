@@ -1,7 +1,7 @@
 # Horizon Four - OneCode - TS - RESTFUL API com TypeScript e JWT Auth
 
 <p align="center">
-  <img width="150" heigth="150" src="https://horizonfour.com.br/images/logo.svg">
+  <img width="150" heigth="150" src="https://media-exp2.licdn.com/mpr/mpr/shrink_200_200/AAIA_wDGAAAAAQAAAAAAAAv2AAAAJGQxMzBhNmIxLTBkNTMtNGRlYS04NTI2LTA2NWQ4ZDIyZDlmZA.png">
 </p>   
 Este é o repositório da base de uma API Rest com Hapi.js, Moongoose, JWTAuth e TypeScript, para utilizarmos como base para projetos futuros.                  
 **Dúvidas ?** erick.wendel@horizonfour.com.br  
