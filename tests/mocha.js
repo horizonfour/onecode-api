@@ -23,7 +23,7 @@ async function test() {
   let mocha = new Mocha();
 
   // Find files for testing
-  let testFiles = glob.sync('../lib/tests/*.test.js');
+  let testFiles = glob.sync('../lib/tests/*Test.js');
   console.log(testFiles);
   testFiles = testFiles.map(file => path.join('lib/test', file));
 

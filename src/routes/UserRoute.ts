@@ -1,25 +1,25 @@
-import { UserController } from './../controllers/UserController';
+import { UserHandler } from './../handlers/UserHandler';
 import IRoute from './interfaces/IRoute';
 import * as Hapi from 'hapi';
 import * as Joi from 'joi';
 
 export class UserRoute implements IRoute {
-  private userController: UserController;
+  private userHandler: UserHandler;
 
   constructor() {
-    this.userController = new UserController();
+    this.userHandler = new UserHandler();
   }
   /*
    * @returns [Returns the Route object for HapiRouter to setup]
    * @memberOf HelloWorldRoute
    */
   private list(): Hapi.RouteConfiguration {
-    return {
+    return <Hapi.RouteConfiguration>{
       path: '/users',
       method: 'GET',
       config: {
-        handler: async (req, reply) => {
-          return await this.userController.list(req, reply);
+        handler: async (request: Hapi.Request, reply: any) => {
+          return await this.userHandler.list(request, reply);
         },
         auth: false,
         description: 'Lista todos os usuários',
@@ -38,8 +38,8 @@ export class UserRoute implements IRoute {
       path: '/users/login',
       method: 'POST',
       config: {
-        handler: async (req, reply) => {
-          return await this.userController.signIn(req, reply);
+        handler: async (request: Hapi.Request, reply: any) => {
+          return await this.userHandler.signIn(request, reply);
         },
         auth: false,
         description: 'Ativa a sessão de um usuário',
@@ -67,8 +67,8 @@ export class UserRoute implements IRoute {
     return {
       path: '/users/{id}',
       method: 'DELETE',
-      handler: async (req, reply) => {
-        return await this.userController.remove(req, reply);
+      handler: async (request: Hapi.Request, reply: any) => {
+        return await this.userHandler.remove(request, reply);
       },
       config: {
         auth: false,
@@ -88,8 +88,8 @@ export class UserRoute implements IRoute {
     return {
       path: '/users/{id}',
       method: 'PUT',
-      handler: async (req, reply) => {
-        return await this.userController.update(req, reply);
+      handler: async (request: Hapi.Request, reply: any) => {
+        return await this.userHandler.update(request, reply);
       },
       config: {
         auth: false,
@@ -109,8 +109,8 @@ export class UserRoute implements IRoute {
     return {
       path: '/users',
       method: 'POST',
-      handler: async (req, reply) => {
-        return await this.userController.create(req, reply);
+      handler: async (request: Hapi.Request, reply: any) => {
+        return await this.userHandler.create(request, reply);
       },
       config: {
         auth: false,
@@ -135,11 +135,11 @@ export class UserRoute implements IRoute {
    */
   public routes(): Hapi.RouteConfiguration[] {
     return [
-      this.list(),
-      this.login(),
-      this.remove(),
-      this.update(),
-      this.create(),
+      // this.list(),
+      // this.login(),
+      // this.remove(),
+      // this.update(),
+      // this.create(),
     ];
   }
 }

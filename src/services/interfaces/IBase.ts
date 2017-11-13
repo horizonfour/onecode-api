@@ -1,4 +1,5 @@
 import * as mongoose from 'mongoose';
+
 interface IBase<T> {
   create(item: T): Promise<object>;
 

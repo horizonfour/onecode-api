@@ -5,7 +5,7 @@ import * as Boom from 'boom';
 import { UserService } from '../services/UserService';
 import { User } from '../entities/User';
 
-export class UserController {
+export class UserHandler {
   // tslint:disable-next-line:variable-name
   private _userService: UserService;
   private query = {
@@ -26,10 +26,7 @@ export class UserController {
     reply: Hapi.ReplyNoContinue,
   ): Promise<Hapi.ReplyValue> {
     try {
-      this.query = request.payload;
-
       const user = await this._userService.list(this.query);
-
       return reply(user);
     } catch (e) {
       console.log(e);
@@ -43,9 +40,7 @@ export class UserController {
   ): Promise<Hapi.ReplyValue> {
     try {
       const user = request.payload;
-
       const newUser = await this._userService.signUp(user);
-
       return reply(newUser);
     } catch (e) {
       console.log(e);
@@ -60,9 +55,7 @@ export class UserController {
     try {
       const user = request.payload.user;
       const newUser = request.payload.fields;
-
       const updatedUser = await this._userService.update(newUser, user);
-
       return reply(updatedUser);
     } catch (e) {
       console.log(e);
@@ -76,9 +69,7 @@ export class UserController {
   ): Promise<Hapi.ReplyValue> {
     try {
       const user = request.payload.user;
-
       const updatedUser = await this._userService.signIn(user);
-
       return reply(updatedUser);
     } catch (e) {
       console.log(e);
@@ -92,9 +83,7 @@ export class UserController {
   ): Promise<Hapi.ReplyValue> {
     try {
       const { id } = request.params;
-
       const user = await this._userService.remove(id);
-
       return reply(user);
     } catch (e) {
       console.log(e);
@@ -107,9 +96,7 @@ export class UserController {
     reply: Hapi.ReplyNoContinue,
   ): Promise<Hapi.ReplyValue> {
     const { id } = request.params;
-
     const user = this._userService.findOne({ _id: id }, true);
-
     return reply(await jwt.sign({ role: user }, 'Horizon Four'));
   }
 }
