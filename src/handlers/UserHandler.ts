@@ -26,7 +26,8 @@ export class UserHandler {
     reply: Hapi.ReplyNoContinue,
   ): Promise<Hapi.ReplyValue> {
     try {
-      const user = await this._userService.list(this.query);
+      const query = request.payload;
+      const user = await this._userService.list(query, this.query);
       return reply(user);
     } catch (e) {
       console.log(e);
@@ -34,6 +35,19 @@ export class UserHandler {
     }
   }
 
+  public async findOne(
+    request: Hapi.Request,
+    reply: Hapi.ReplyNoContinue,
+  ): Promise<Hapi.ReplyValue> {
+    try {
+      const { id } = request.params;
+      const user = await this._userService.findOne({ _id: id });
+      return reply(user);
+    } catch (e) {
+      console.log(e);
+      return reply(Boom.badImplementation(e));
+    }
+  }
   public async create(
     request: Hapi.Request,
     reply: Hapi.ReplyNoContinue,
@@ -53,9 +67,9 @@ export class UserHandler {
     reply: Hapi.ReplyNoContinue,
   ): Promise<Hapi.ReplyValue> {
     try {
-      const user = request.payload.user;
-      const newUser = request.payload.fields;
-      const updatedUser = await this._userService.update(newUser, user);
+      const { id } = request.params;
+      const item = request.payload;
+      const updatedUser = await this._userService.update({ _id: id }, item);
       return reply(updatedUser);
     } catch (e) {
       console.log(e);
@@ -68,7 +82,7 @@ export class UserHandler {
     reply: Hapi.ReplyNoContinue,
   ): Promise<Hapi.ReplyValue> {
     try {
-      const user = request.payload.user;
+      const user = request.payload;
       const updatedUser = await this._userService.signIn(user);
       return reply(updatedUser);
     } catch (e) {
@@ -89,14 +103,5 @@ export class UserHandler {
       console.log(e);
       return reply(Boom.badImplementation(e));
     }
-  }
-
-  public async generateToken(
-    request: Hapi.Request,
-    reply: Hapi.ReplyNoContinue,
-  ): Promise<Hapi.ReplyValue> {
-    const { id } = request.params;
-    const user = this._userService.findOne({ _id: id }, true);
-    return reply(await jwt.sign({ role: user }, 'Horizon Four'));
   }
 }

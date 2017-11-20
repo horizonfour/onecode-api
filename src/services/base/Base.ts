@@ -29,12 +29,15 @@ class Base<T> implements IBase<T> {
     return result;
   }
 
-  async list(item: {
-    skip: Number;
-    limit: Number;
-    order: { field: String; order: String };
-  }): Promise<mongoose.Document[]> {
-    const result = await this._database.find({}, { __v: 0 }, item);
+  async list(
+    query: T | {} = {},
+    options: {
+      skip: Number;
+      limit: Number;
+      order: { field: String; order: String };
+    },
+  ): Promise<mongoose.Document[]> {
+    const result = await this._database.find(query, { __v: 0 }, options);
     return result;
   }
 

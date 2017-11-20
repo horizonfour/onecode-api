@@ -5,7 +5,7 @@
   "main": "bootstrap.ts",
   "scripts": {
     "build": "tsc",
-    "dev": "nodemon lib/bootstrap.js",
+    "start": "nodemon lib/bootstrap.js",
     "test": "mocha lib/tests/*Test.js",
     "test:watch": "tsc && nodemon --exec mocha lib/tests/*.test.js",
     "seed": "node lib/src/db/seed.js"
@@ -17,7 +17,7 @@
     "@types/dotenv": "4.0.1",
     "@types/hapi": "16.1.10",
     "@types/joi": "10.4.3",
-    "@types/jsonwebtoken": "7.2.3",
+    "@types/jsonwebtoken": "^7.2.3",
     "@types/mocha": "2.2.43",
     "@types/mongoose": "4.7.23",
     "@types/node": "8.0.51",
@@ -33,7 +33,7 @@
     "inert": "4.2.1",
     "joi": "13.0.0",
     "joi-objectid": "2.0.0",
-    "jsonwebtoken": "8.1.0",
+    "jsonwebtoken": "^8.1.0",
     "mongoose": "4.12.3",
     "tslint-config-airbnb": "5.3.0",
     "typescript": "2.5.3",
@@ -46,7 +46,11 @@
     "nodemon": "1.12.1"
   },
   "ava": {
-    "files": ["lib/tests/*"],
-    "source": ["**/**.{js,ts}"]
+    "files": [
+      "lib/tests/*"
+    ],
+    "source": [
+      "**/**.{js,ts}"
+    ]
   }
 }

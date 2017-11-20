@@ -7,9 +7,12 @@ const userSchema = new mongoose.Schema({
   name: {
     required: true,
     type: String,
+    unique: true,
+  },
+  password: {
+    required: true,
+    type: String,
   },
 });
-// let a:.Model;
 
-const a = mongoose.model('User', userSchema);
 export default mongoose.model('User', userSchema);

@@ -1,1 +1,0 @@
-{"version":3,"file":"HapiRouter.js","sourceRoot":"","sources":["../../../src/plugins/HapiRouter.ts"],"names":[],"mappings":";;AAAA,MAAM,UAAU,GAAG,OAAO,CAAC,aAAa,CAAC,CAAC;AAE1C;IACE,MAAM,CAAC,MAAM;QACX,MAAM,CAAC;YACL,QAAQ,EAAE,UAAU;YACpB,OAAO,EAAE;gBACP,MAAM,EAAE,0BAA0B;aACnC;SACF,CAAC;IACJ,CAAC;CACF;AATD,gCASC"}

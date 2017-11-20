@@ -1,5 +1,5 @@
 import * as Hapi from 'hapi';
-import { HapiRouter } from './src/plugins/HapiRouter'; // Plugin para importar as rotas.
+import { BaseRoute } from './src/routes/base/BaseRoute';
 const inert = require('inert'); // Usado para exposição de arquivos estáticos.
 const vision = require('vision'); // Usado para administração de template engines
 const hapiJwt = require('hapi-auth-jwt2');
@@ -14,15 +14,16 @@ async function startApi() {
   try {
     // Instancia o HapiJS
     const server = new Hapi.Server();
-    await server.connection({ port: 3000 });
+    await server.connection({ port: process.env.PORT || 3000 });
 
+    // register plugins
     await server.register([
       inert,
       vision,
       {
         register: hapiSwagger,
         options: {
-          info: { title: 'O Conversador API', version: '0.1' },
+          info: { title: 'Nome do Projeto', version: '0.1' },
         },
       },
       hapiJwt,
@@ -34,9 +35,8 @@ async function startApi() {
       validateFunc: validate,
       verifyOptions: { algorithms: ['HS256'] },
     });
-    // server.auth.default('jwt');
 
-    await server.register(HapiRouter.plugin());
+    await server.route(BaseRoute.routes());
 
     await server.start();
 

@@ -9,32 +9,13 @@ export class UserRoute implements IRoute {
   constructor() {
     this.userHandler = new UserHandler();
   }
-  /*
-   * @returns [Returns the Route object for HapiRouter to setup]
-   * @memberOf HelloWorldRoute
-   */
-  private list(): Hapi.RouteConfiguration {
-    return <Hapi.RouteConfiguration>{
-      path: '/users',
-      method: 'GET',
-      config: {
-        handler: async (request: Hapi.Request, reply: any) => {
-          return await this.userHandler.list(request, reply);
-        },
-        auth: false,
-        description: 'Lista todos os usuários',
-        notes: 'Lista todos os usuário registrados, Coordenadores ou não',
-        tags: ['api'],
-      },
-    };
-  }
 
   /**
    * Retorna a configuração para a rota POST /user
    * @returns Hapi.RouteConfiguration
    */
   private login(): Hapi.RouteConfiguration {
-    return {
+    return <Hapi.RouteConfiguration>{
       path: '/users/login',
       method: 'POST',
       config: {
@@ -58,23 +39,84 @@ export class UserRoute implements IRoute {
     };
   }
 
+  /*
+   * @returns [Returns the Route object for HapiRouter to setup]
+   * @memberOf HelloWorldRoute
+   */
+  private list(): Hapi.RouteConfiguration {
+    return <Hapi.RouteConfiguration>{
+      path: '/users',
+      method: 'GET',
+      config: {
+        handler: async (request: Hapi.Request, reply: any) => {
+          return await this.userHandler.list(request, reply);
+        },
+        auth: 'jwt',
+        description: 'Lista todos os usuários',
+        notes: 'Lista todos os usuário registrados, Coordenadores ou não',
+        tags: ['api'],
+        validate: {
+          headers: Joi.object({
+            authorization: Joi.string().required(),
+          }).unknown(),
+        },
+      },
+    };
+  }
+
+  /*
+   * @returns [Returns the Route object for HapiRouter to setup]
+   * @memberOf HelloWorldRoute
+   */
+  private findOne(): Hapi.RouteConfiguration {
+    return <Hapi.RouteConfiguration>{
+      path: '/users/{id}',
+      method: 'GET',
+      config: {
+        handler: async (request: Hapi.Request, reply: any) => {
+          return await this.userHandler.findOne(request, reply);
+        },
+        auth: 'jwt',
+        description: 'Obtem um usuário',
+        notes: 'Obtem um usuário',
+        tags: ['api'],
+        validate: {
+          params: {
+            id: Joi.string().required(),
+          },
+          headers: Joi.object({
+            authorization: Joi.string().required(),
+          }).unknown(),
+        },
+      },
+    };
+  }
+
   /**
    * [Retorna a configuração da rota DELETE.]
    * @returns [Hapi.RouteConfiguration]
    * @memberOf RegionRoute
    */
   private remove(): Hapi.RouteConfiguration {
-    return {
+    return <Hapi.RouteConfiguration>{
       path: '/users/{id}',
       method: 'DELETE',
       handler: async (request: Hapi.Request, reply: any) => {
         return await this.userHandler.remove(request, reply);
       },
       config: {
-        auth: false,
+        auth: 'jwt',
         description: 'Remove um usuário',
         notes: 'Remove um usuário',
         tags: ['api'],
+        validate: {
+          headers: Joi.object({
+            authorization: Joi.string().required(),
+          }).unknown(),
+          params: {
+            id: Joi.string().required(),
+          },
+        },
       },
     };
   }
@@ -85,17 +127,29 @@ export class UserRoute implements IRoute {
    * @memberOf RegionRoute
    */
   private update(): Hapi.RouteConfiguration {
-    return {
+    return <Hapi.RouteConfiguration>{
       path: '/users/{id}',
       method: 'PUT',
       handler: async (request: Hapi.Request, reply: any) => {
         return await this.userHandler.update(request, reply);
       },
       config: {
-        auth: false,
+        auth: 'jwt',
         description: 'Altera um usuário',
         notes: 'Altera um usuário',
         tags: ['api'],
+        validate: {
+          headers: Joi.object({
+            authorization: Joi.string().required(),
+          }).unknown(),
+          payload: {
+            name: Joi.string(),
+            password: Joi.string(),
+          },
+          params: {
+            id: Joi.string().required(),
+          },
+        },
       },
     };
   }
@@ -106,14 +160,14 @@ export class UserRoute implements IRoute {
    * @memberOf RegionRoute
    */
   private create(): Hapi.RouteConfiguration {
-    return {
+    return <Hapi.RouteConfiguration>{
       path: '/users',
       method: 'POST',
       handler: async (request: Hapi.Request, reply: any) => {
         return await this.userHandler.create(request, reply);
       },
       config: {
-        auth: false,
+        auth: 'jwt',
         description: 'Realiza o cadastro de usuário',
         notes: 'Cria um usuário, gerando a hash da senha dele.',
         tags: ['api'],
@@ -125,6 +179,9 @@ export class UserRoute implements IRoute {
               .min(6)
               .max(12),
           },
+          headers: Joi.object({
+            authorization: Joi.string().required(),
+          }).unknown(),
         },
       },
     };
@@ -135,11 +192,12 @@ export class UserRoute implements IRoute {
    */
   public routes(): Hapi.RouteConfiguration[] {
     return [
-      // this.list(),
-      // this.login(),
-      // this.remove(),
-      // this.update(),
-      // this.create(),
+      this.login(),
+      this.list(),
+      this.findOne(),
+      this.remove(),
+      this.update(),
+      this.create(),
     ];
   }
 }
