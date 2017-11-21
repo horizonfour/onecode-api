@@ -108,10 +108,14 @@ test('POST /users - cadastrar usuario', async (t: TestContext) => {
   t.true(payload.status);
 });
 
-test.after('PUT /users/${id} - Atualizar usuario', async (t: TestContext) => {
+test('PUT /users/${id} - Atualizar usuario', async (t: TestContext) => {
+  const user: any = await service.create(<User>{
+    name: 'Test2' + new Date().getTime(),
+    password: '123456',
+  });
   const req: Object = {
     method: 'PUT',
-    url: `/users/${id}`,
+    url: `/users/${user._id}`,
     headers: {
       Authorization: `${MOCKED_TOKEN}`,
     },
@@ -126,9 +130,13 @@ test.after('PUT /users/${id} - Atualizar usuario', async (t: TestContext) => {
 });
 
 test.after('DELETE /users/${id} - Remover usuarios', async (t: TestContext) => {
+  const user: any = await service.create(<User>{
+    name: 'Test2' + new Date().getTime(),
+    password: '123456',
+  });
   const req: Object = {
     method: 'DELETE',
-    url: `/users/${id}`,
+    url: `/users/${user._id}`,
     headers: {
       Authorization: `${MOCKED_TOKEN}`,
     },
@@ -137,7 +145,7 @@ test.after('DELETE /users/${id} - Remover usuarios', async (t: TestContext) => {
   t.true(res.result.status.result.ok === 1);
 });
 
-test.after('Remove mocked data from db', async (t: TestContext) => {
-  const item: any = await service.findOne({ name: MOCK_INSERT.name });
-  await service.remove(item._id);
-});
+// test.after('Remove mocked data from db', async (t: TestContext) => {
+//   const item: any = await service.findOne({ name: MOCK_INSERT.name });
+//   await service.remove(item._id);
+// });

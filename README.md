@@ -5,6 +5,13 @@
 [GitCrypt Tutorial](https://medium.com/trainingcenter/protegendo-dados-sens%C3%ADveis-com-git-crypt-9fca13e6835b).  
 **E para acessar esse ambiente entre em contado e solicite a chave** :smile:  
 
+### Rodando o projeto
+Build: `npm run build` <br>
+Rodando testes: `npm test`
+
+Rodando: `npm start`<br>
+Para acessar a documentação do Swagger:
+> http://localhost:3000/documentation
 
 ### Principais Dependencias
 Esta é a lista com as principais dependencias que o seu projeto deve possuir.

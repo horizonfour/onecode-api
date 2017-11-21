@@ -6,9 +6,7 @@
   "scripts": {
     "build": "tsc",
     "start": "nodemon lib/bootstrap.js",
-    "test": "mocha lib/tests/*Test.js",
-    "test:watch": "tsc && nodemon --exec mocha lib/tests/*.test.js",
-    "seed": "node lib/src/db/seed.js"
+    "test": "ava --watch lib/tests"
   },
   "author": "Horizon Four",
   "license": "ISC",
@@ -46,11 +44,7 @@
     "nodemon": "1.12.1"
   },
   "ava": {
-    "files": [
-      "lib/tests/*"
-    ],
-    "source": [
-      "**/**.{js,ts}"
-    ]
+    "files": ["lib/tests/*"],
+    "source": ["**/**.{js,ts}"]
   }
 }
