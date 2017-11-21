@@ -6,6 +6,7 @@
 **E para acessar esse ambiente entre em contado e solicite a chave** :smile:  
 
 ### Rodando o projeto
+Dependencias: `npm install` <br>
 Build: `npm run build` <br>
 Rodando testes: `npm test`
 
