@@ -37,7 +37,7 @@ export class UserService extends Base<User> {
     const existentUser = await this.findOne({ name: user.name });
     if (existentUser) throw new Error('Usuário existente!');
 
-    const created = await super.create(user);
+    const created: any = await super.create(user);
 
     if (created) {
       return {

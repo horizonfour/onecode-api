@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "start": "nodemon lib/bootstrap.js",
-    "test": "ava --watch lib/tests"
+    "test": "ava lib/tests"
   },
   "author": "Horizon Four",
   "license": "ISC",
