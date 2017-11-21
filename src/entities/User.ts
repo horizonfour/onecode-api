@@ -1,5 +1,5 @@
 export class User {
-  public id: String;
-  public name: String;
-  public password: String;
+  public id: string | undefined;
+  public name: string;
+  public password: string;
 }

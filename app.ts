@@ -10,7 +10,7 @@ const validate = (decoded: any, request: any, callback: any) => {
   return callback(null, false);
 };
 
-async function startApi() {
+async function startApi(): Promise<Hapi.Server> {
   try {
     // Instancia o HapiJS
     const server = new Hapi.Server();
@@ -45,6 +45,7 @@ async function startApi() {
     return server;
   } catch (error) {
     console.error(`Falha na inicialização da API: ${error}`);
+    return new Hapi.Server();
   }
 }
 

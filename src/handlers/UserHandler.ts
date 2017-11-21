@@ -31,7 +31,7 @@ export class UserHandler {
       return reply(user);
     } catch (e) {
       console.log(e);
-      return reply(Boom.badImplementation(e));
+      return reply(e.message).code(500);
     }
   }
 
@@ -45,7 +45,7 @@ export class UserHandler {
       return reply(user);
     } catch (e) {
       console.log(e);
-      return reply(Boom.badImplementation(e));
+      return reply(e.message).code(500);
     }
   }
   public async create(
@@ -54,11 +54,11 @@ export class UserHandler {
   ): Promise<Hapi.ReplyValue> {
     try {
       const user = request.payload;
-      const newUser = await this._userService.signUp(user);
+      const newUser = await this._userService.create(user);
       return reply(newUser);
     } catch (e) {
       console.log(e);
-      return reply(Boom.badImplementation(e));
+      return reply(e.message).code(500);
     }
   }
 
@@ -73,7 +73,7 @@ export class UserHandler {
       return reply(updatedUser);
     } catch (e) {
       console.log(e);
-      return reply(Boom.badImplementation(e));
+      return reply(e.message).code(500);
     }
   }
 
@@ -87,7 +87,7 @@ export class UserHandler {
       return reply(updatedUser);
     } catch (e) {
       console.log(e);
-      return reply(Boom.badImplementation(e));
+      return reply(e.message).code(500);
     }
   }
 
@@ -101,7 +101,7 @@ export class UserHandler {
       return reply(user);
     } catch (e) {
       console.log(e);
-      return reply(Boom.badImplementation(e));
+      return reply(e.message).code(500);
     }
   }
 }

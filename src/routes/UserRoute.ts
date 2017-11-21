@@ -29,10 +29,8 @@ export class UserRoute implements IRoute {
         tags: ['api'],
         validate: {
           payload: {
-            name: Joi.string(),
-            password: Joi.string()
-              .min(6)
-              .max(12),
+            name: Joi.string().required(),
+            password: Joi.string().required(),
           },
         },
       },

@@ -11,30 +11,33 @@ export class UserService extends Base<User> {
   }
 
   generateHash(password: String) {
-    return bcrypt.hashSync(password, 10);
+    return bcrypt.hash(password, 10);
   }
 
-  validateHash(user: User, hash: string) {
-    return bcrypt.compareSync(user.password, hash);
+  async validateHash(user: User, hash: string) {
+    return await bcrypt.compare(user.password, hash);
   }
 
   async signIn(user: User) {
     const { name } = user;
     const userDb = (await this.findOne({ name })) as User;
-    console.log('user', user);
     if (!userDb) {
       throw new Error('Usuário não encontrado');
     }
-    const validHash = this.validateHash(user, userDb.password.toString());
+
+    const validHash = await this.validateHash(user, userDb.password);
     if (!validHash) throw new Error('Usuário ou senha incorretos');
 
     return Jwt.sign(user, process.env.JWT_SECRET || '');
   }
 
-  async signUp(user: User) {
-    console.log('user', user);
-    user.password = this.generateHash(user.password);
-    const created = await this.create(user);
+  async create(user: User): Promise<object> {
+    user.password = await this.generateHash(user.password);
+
+    const existentUser = await this.findOne({ name: user.name });
+    if (existentUser) throw new Error('Usuário existente!');
+
+    const created = super.create(user);
 
     if (created) {
       return {

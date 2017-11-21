@@ -8,4 +8,4 @@ if (process.env.ENVIRONMENT !== 'PROD') {
 }
 
 import * as app from './app.js';
-app.default();
+export default app.default();
