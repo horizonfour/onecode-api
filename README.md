@@ -19,7 +19,7 @@ Todos os projetos precisam passar code review de pelo menos um membro do time H4
 ### Importante!      
 **Para construção desse template de API foi utilizado o Git-Crypt, para verificar seu uso, acesse**  
 [GitCrypt Tutorial](https://medium.com/trainingcenter/protegendo-dados-sens%C3%ADveis-com-git-crypt-9fca13e6835b).  
-**E para acessar esse ambiente entre em contado e solicite a chave** :smile:  
+**E para acessar esse ambiente entre em contato e solicite a chave** :smile:  
 
 
 ### Principais Dependencias
